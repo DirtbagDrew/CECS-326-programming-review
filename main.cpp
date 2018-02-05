@@ -1,6 +1,22 @@
 #include <iostream>
 using namespace std;
 
+struct structures
+{
+  char *ptrChar[20];
+  int charsAllocated[20];
+};
+structures structure;
+
+void initializeIntegerArray()
+{
+  structure.charsAllocated[0]=2700;
+  for(int i=0;i<19;i++)
+  {
+    structure.charsAllocated[i+1]=2*structure.charsAllocated[i];
+  }
+}
+
 int inputIntRange(int low, int high)
 {
   int userInput;
@@ -71,6 +87,8 @@ void menu()
 
 int main()
 {
+  cout<<"Initiallizing Memory..."<<endl;
+  initializeStructure();
   menu();
   return 0;
 }
