@@ -19,9 +19,22 @@ void initializeIntegerArray()
 
 void allocateMemory()
 {
+  cout<<"checkk"<<endl;
+  int temp = structure.charsallocated[i];
   for(int i =0;i<20;i++)
   {
-    *structure.ptrChar[i]=new char[structure.charsAllocated[i]];
+    *structure.ptrChar[i]=new char[temp];
+  }
+}
+
+void printDeallocatedMemory()
+{
+  for(int i =0; i<20; i++)
+  {
+    if (!structure.ptrChar[i])
+    {
+      cout<<i<<endl;
+    }
   }
 }
 
@@ -36,9 +49,9 @@ int inputIntRange(int low, int high)
   }
   return userInput;
 }
-void deallocateMemory()
+void deallocateMemory(int a)
 {
-  
+  delete structure.ptrChar[a];
 }
 
 void menu()
@@ -72,6 +85,7 @@ void menu()
             break;
           case 2: //delete all characters associated with pointer
             cout<<"Deleting All Characters Associated with "<<pointerToAccess<<endl;
+
             break;
           case 3: //return to main menu
             cout<<"Returning to Main Menu"<<endl;
@@ -82,10 +96,11 @@ void menu()
 
       case 2: //list deallocated memory
         cout<<"Deallocated Memory: "<<endl;
-
+        printDeallocatedMemory();
         break;
       case 3: //deallocate all memory
         cout<<"Deallocating All Memory"<<endl;
+        deallocateMemory(1);
 
         break;
       case 4: //exit program
