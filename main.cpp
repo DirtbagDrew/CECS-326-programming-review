@@ -1,14 +1,25 @@
 #include <iostream>
 using namespace std;
-
+/*
+This structure holds 3 items:
+an array of pointers to corresponding character arrays
+an integer array with the number of space to allocate to each of the corresponding pointers to arrays
+a character array with the alphabet, used to populate the arrays
+*/
 struct structures
 {
   char *ptrChar[20];
   int charsAllocated[20];
   char Alphabet[26];
 };
+
+//initialize strucure to be used for the program
 structures structure;
 
+/*
+  populates the alphabet array in the structure with a capital
+  letter A-Z to each index
+*/
 void setAlphabet()
 {
   structure.Alphabet[0]='A';
@@ -38,16 +49,25 @@ void setAlphabet()
   structure.Alphabet[24]='Y';
   structure.Alphabet[25]='Z';
 }
+/*
+  initializes the integer array charsAllocated in the structures
+  with the algorithm
+  f(0)=2700 & f(n+1)=2*f(n) where n is an index of the integer array for 0<n<19
+*/
 
 void initializeIntegerArray()
 {
+  cout<<"Initiallizing Memory..."<<endl;
   structure.charsAllocated[0]=2700;
   for(int i=0;i<19;i++)
   {
     structure.charsAllocated[i+1]=2*structure.charsAllocated[i];
   }
 }
-
+/*
+  populates the arrays that the pointers point to with randon letters
+  from the alphabet
+*/
 void populateArrays()
 {
   setAlphabet();
@@ -61,6 +81,9 @@ void populateArrays()
   }
 }
 
+/*
+  allocates memory to each array that the pointers point to
+*/
 void allocateMemory()
 {
   for(int i =0;i<20;i++)
@@ -70,6 +93,9 @@ void allocateMemory()
   populateArrays();
 }
 
+/*
+  prints all pointers that have no memory allocated to them
+*/
 void printDeallocatedMemory()
 {
   int counter=0;
@@ -81,7 +107,7 @@ void printDeallocatedMemory()
       break;
     }
   }
-  if(counter>0)
+  if(counter>0) //pointer has array
   {
     cout<<"Deallocated Memory: "<<endl;
     for(int i =0; i<20; i++)
@@ -92,28 +118,44 @@ void printDeallocatedMemory()
       }
     }
   }
-  else
+  else  //pointer has no array
   {
     cout<<"No Deallocated Memory"<<endl;
   }
 }
 
+/*
+  takes integer input and validates to make sure the input is
+  within a specified range
+  variables:
+    int low : the specified low boundary of the range accepted
+    int high: the specified high boundary of the range accepted
+  returns:
+    verified input
+*/
 int inputIntRange(int low, int high)
 {
   int userInput;
   cin>>userInput;
-  while (userInput < low || userInput > high)
+  while (cin.fail()||userInput < low || userInput > high)
   {
-    cout << "Invalid entry! Please enter a valid number between "<<low<<" and "<<high<<": ";
+    cin.clear();
+    cin.ignore(256,'\n');
+    cout << "Invalid entry! Please enter a valid number between "<<low<<" and "<<high<<": "<<endl;
     cin >> userInput;
   }
   return userInput;
 }
+/*
+  deallocates memory of a pointer
+  variables:
+    int a: the index of the pointer used to delete the array
+*/
 void deallocateMemory(int a)
 {
   if(structure.ptrChar[a]==nullptr)
   {
-    //cout<<"pointer: "<<a<<" is already deallocated"<<endl;
+    //pointer is already deallocated
   }
   else
   {
@@ -121,13 +163,23 @@ void deallocateMemory(int a)
     structure.ptrChar[a]=nullptr;
   }
 }
+/*
+  deallocates all the memory the pointers point to
+*/
 void deallocateAllMemory()
 {
+  cout<<"Deallocating All Memory"<<endl;
   for(int i=0;i<20;i++)
   {
     deallocateMemory(i);
   }
 }
+/*
+  prints the first 10 characters of the array pointed to, if it has
+  memory allocated to it
+  variables:
+    int a: the index of the pointer to the array
+*/
 void printTenCharacters(int a)
 {
   if(structure.ptrChar[a]==nullptr)
@@ -144,7 +196,9 @@ void printTenCharacters(int a)
   }
 
 }
-
+/*
+  contains the main and submenu of the program
+*/
 void menu()
 {
   int menuInput = 0;
@@ -194,21 +248,20 @@ void menu()
         printDeallocatedMemory();
         break;
       case 3: //deallocate all memory
-        cout<<"Deallocating All Memory"<<endl;
         deallocateAllMemory();
-
         break;
       case 4: //exit program
         cout<<"Exiting Program";
-
         break;
     }
   }
 }
 
+/*
+  main method of the program
+*/
 int main()
 {
-  cout<<"Initiallizing Memory..."<<endl;
   initializeIntegerArray();
   allocateMemory();
   menu();
