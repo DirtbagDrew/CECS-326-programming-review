@@ -162,27 +162,32 @@ void menu()
     switch(menuInput)
     {
       case 1: //access a pointer
+        subMenuInput=0;
         cout<<"Which Pointer Do You Want to Access?: ";
         pointerToAccess=inputIntRange(0,19);
         cout<<"You Selected pointer: "<<pointerToAccess<<". What Would You Like to Do?"<<endl;
-        cout<<"(1) Print the First 10 Characters in the Array"<<endl;
-        cout<<"(2) Delete All Chars Associated with Pointer"<<endl;
-        cout<<"(3) Return to Main Menu"<<endl;
-        subMenuInput = inputIntRange(1,3);
-        switch(subMenuInput)
+        while(subMenuInput!=3)
         {
-          case 1: //print first 10 characters in array
-            printTenCharacters(pointerToAccess);
-            break;
-          case 2: //delete all characters associated with pointer
-            cout<<"Deleting All Characters Associated with "<<pointerToAccess<<endl;
-            deallocateMemory(pointerToAccess);
-            break;
-          case 3: //return to main menu
-            cout<<"Returning to Main Menu"<<endl;
-            cout<<endl;
-            break;
+          cout<<"(1) Print the First 10 Characters in the Array"<<endl;
+          cout<<"(2) Delete All Chars Associated with Pointer"<<endl;
+          cout<<"(3) Return to Main Menu"<<endl;
+          subMenuInput = inputIntRange(1,3);
+          switch(subMenuInput)
+          {
+            case 1: //print first 10 characters in array
+              printTenCharacters(pointerToAccess);
+              break;
+            case 2: //delete all characters associated with pointer
+              cout<<"Deleting All Characters Associated with "<<pointerToAccess<<endl;
+              deallocateMemory(pointerToAccess);
+              break;
+            case 3: //return to main menu
+              cout<<"Returning to Main Menu"<<endl;
+              cout<<endl;
+              break;
+          }
         }
+
         break;
 
       case 2: //list deallocated memory
