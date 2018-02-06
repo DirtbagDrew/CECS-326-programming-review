@@ -17,6 +17,14 @@ void initializeIntegerArray()
   }
 }
 
+void allocateMemory()
+{
+  for(int i =0;i<20;i++)
+  {
+    *structure.ptrChar[i]=new char[structure.charsAllocated[i]];
+  }
+}
+
 int inputIntRange(int low, int high)
 {
   int userInput;
@@ -27,6 +35,10 @@ int inputIntRange(int low, int high)
     cin >> userInput;
   }
   return userInput;
+}
+void deallocateMemory()
+{
+  
 }
 
 void menu()
@@ -84,11 +96,11 @@ void menu()
   }
 }
 
-
 int main()
 {
   cout<<"Initiallizing Memory..."<<endl;
-  initializeStructure();
+  initializeIntegerArray();
+  allocateMemory();
   menu();
   return 0;
 }
