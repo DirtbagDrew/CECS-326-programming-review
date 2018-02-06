@@ -12,31 +12,31 @@ structures structure;
 void setAlphabet()
 {
   structure.Alphabet[0]='A';
-  structure.Alphabet[0]='B';
-  structure.Alphabet[0]='C';
-  structure.Alphabet[0]='D';
-  structure.Alphabet[0]='E';
-  structure.Alphabet[0]='F';
-  structure.Alphabet[0]='G';
-  structure.Alphabet[0]='H';
-  structure.Alphabet[0]='I';
-  structure.Alphabet[0]='J';
-  structure.Alphabet[0]='K';
-  structure.Alphabet[0]='L';
-  structure.Alphabet[0]='M';
-  structure.Alphabet[0]='N';
-  structure.Alphabet[0]='O';
-  structure.Alphabet[0]='P';
-  structure.Alphabet[0]='Q';
-  structure.Alphabet[0]='R';
-  structure.Alphabet[0]='S';
-  structure.Alphabet[0]='T';
-  structure.Alphabet[0]='U';
-  structure.Alphabet[0]='V';
-  structure.Alphabet[0]='W';
-  structure.Alphabet[0]='X';
-  structure.Alphabet[0]='Y';
-  structure.Alphabet[0]='Z';
+  structure.Alphabet[1]='B';
+  structure.Alphabet[2]='C';
+  structure.Alphabet[3]='D';
+  structure.Alphabet[4]='E';
+  structure.Alphabet[5]='F';
+  structure.Alphabet[6]='G';
+  structure.Alphabet[7]='H';
+  structure.Alphabet[8]='I';
+  structure.Alphabet[9]='J';
+  structure.Alphabet[10]='K';
+  structure.Alphabet[11]='L';
+  structure.Alphabet[12]='M';
+  structure.Alphabet[13]='N';
+  structure.Alphabet[14]='O';
+  structure.Alphabet[15]='P';
+  structure.Alphabet[16]='Q';
+  structure.Alphabet[17]='R';
+  structure.Alphabet[18]='S';
+  structure.Alphabet[19]='T';
+  structure.Alphabet[20]='U';
+  structure.Alphabet[21]='V';
+  structure.Alphabet[22]='W';
+  structure.Alphabet[23]='X';
+  structure.Alphabet[24]='Y';
+  structure.Alphabet[25]='Z';
 }
 
 void initializeIntegerArray()
@@ -70,16 +70,31 @@ void allocateMemory()
   populateArrays();
 }
 
-
-
 void printDeallocatedMemory()
 {
+  int counter=0;
   for(int i =0; i<20; i++)
   {
     if (structure.ptrChar[i]==nullptr)
     {
-      cout<<i<<endl;
+      counter++;
+      break;
     }
+  }
+  if(counter>0)
+  {
+    cout<<"Deallocated Memory: "<<endl;
+    for(int i =0; i<20; i++)
+    {
+      if (structure.ptrChar[i]==nullptr)
+      {
+        cout<<i<<endl;
+      }
+    }
+  }
+  else
+  {
+    cout<<"No Deallocated Memory"<<endl;
   }
 }
 
@@ -115,14 +130,19 @@ void deallocateAllMemory()
 }
 void printTenCharacters(int a)
 {
-  for(int i=0;i<10;i++)
+  if(structure.ptrChar[a]==nullptr)
   {
-    cout<<"First 10 characters: ";
+    cout<<"pointer "<<a<<" has no characters to print"<<endl;
+  }
+  else
+  {
+    cout<<"First 10 characters: "<<endl;
     for(int i=0;i<10;i++)
     {
       cout<<structure.ptrChar[a][i]<<endl;
     }
   }
+
 }
 
 void menu()
@@ -152,7 +172,7 @@ void menu()
         switch(subMenuInput)
         {
           case 1: //print first 10 characters in array
-            cout<<"First 10 Characters:"<<endl;
+            printTenCharacters(pointerToAccess);
             break;
           case 2: //delete all characters associated with pointer
             cout<<"Deleting All Characters Associated with "<<pointerToAccess<<endl;
@@ -166,7 +186,6 @@ void menu()
         break;
 
       case 2: //list deallocated memory
-        cout<<"Deallocated Memory: "<<endl;
         printDeallocatedMemory();
         break;
       case 3: //deallocate all memory
