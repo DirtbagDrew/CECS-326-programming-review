@@ -93,6 +93,20 @@ void allocateMemory()
   populateArrays();
 }
 
+void deallocatedSingleCheck(int a)
+{
+  if(structure.ptrChar[a]==nullptr)
+  {
+    cout<<"Pointer is deallocated"<<endl<<"Realocating Memory..."<<endl;
+    structure.ptrChar[a]=new char[structure.charsAllocated[a]];
+    for(int j=0;j<structure.charsAllocated[a];j++)
+    {
+      int random_number=rand()%25;
+      structure.ptrChar[a][j]=structure.Alphabet[random_number];
+    }
+  }
+}
+
 /*
   prints all pointers that have no memory allocated to them
 */
@@ -219,6 +233,7 @@ void menu()
         subMenuInput=0;
         cout<<"Which Pointer Do You Want to Access?: ";
         pointerToAccess=inputIntRange(0,19);
+        deallocatedSingleCheck(pointerToAccess);
         cout<<"You Selected pointer: "<<pointerToAccess<<". What Would You Like to Do?"<<endl;
         while(subMenuInput!=3)
         {
