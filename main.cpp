@@ -1,6 +1,12 @@
 #include <iostream>
 using namespace std;
 /*
+Andrew Myer
+012939730
+CECS 326
+*/
+
+/*
 This structure holds 3 items:
 an array of pointers to corresponding character arrays
 an integer array with the number of space to allocate to each of the corresponding pointers to arrays
