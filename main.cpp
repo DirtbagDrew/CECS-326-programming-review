@@ -93,6 +93,11 @@ void allocateMemory()
   populateArrays();
 }
 
+/*
+  reallocates a pointer if it is already deallocated
+  variables
+    int a: the specified pointer
+*/
 void deallocatedSingleCheck(int a)
 {
   if(structure.ptrChar[a]==nullptr)
