@@ -266,6 +266,8 @@ void menu()
         deallocateAllMemory();
         break;
       case 4: //exit program
+        deallocateAllMemory();
+        cout<<endl;
         cout<<"Exiting Program";
         break;
     }
