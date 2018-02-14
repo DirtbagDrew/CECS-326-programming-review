@@ -1,10 +1,10 @@
+/*
+CECS 326 Programming Review
+This program is a review assignment allocating and deallocating memory
+*/
+
 #include <iostream>
 using namespace std;
-/*
-Andrew Myer
-012939730
-CECS 326
-*/
 
 /*
 This structure holds 3 items:
