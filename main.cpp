@@ -1,4 +1,5 @@
 /*
+Andrew Myer
 CECS 326 Programming Review
 This program is a review assignment allocating and deallocating memory
 */
